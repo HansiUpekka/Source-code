@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      POSTGRES_USER: intellihire
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: intellihire_db
+  nginx:
+    depends_on:
+      - api
+      - client
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3050:80"
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+    environment:
+      PGUSER: postgres
+      PGHOST: postgres
+      PGDATABASE: intellihire_db
+      PGPASSWORD: password
+      PGPORT: 5432
+  client:
+    stdin_open: true
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
