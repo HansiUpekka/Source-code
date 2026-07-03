@@ -2,10 +2,8 @@ version: '3.8'
 services:
   postgres:
     image: 'postgres:latest'
-    environment:
-      POSTGRES_USER: intellihire
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: intellihire_db
+    env_file:
+      - ./backend/.env
   nginx:
     depends_on:
       - api
@@ -20,15 +18,11 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.dev
+    env_file:
+      - ./backend/.env
     volumes:
       - /app/node_modules
       - ./backend:/app
-    environment:
-      PGUSER: postgres
-      PGHOST: postgres
-      PGDATABASE: intellihire_db
-      PGPASSWORD: password
-      PGPORT: 5432
   client:
     stdin_open: true
     build:

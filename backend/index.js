@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const keys = require("./key");
 
 //Express application setup
@@ -21,7 +23,7 @@ const pgClient = new Pool({
 
 pgClient.on("connect", client => {
     client
-    .query("CREATE TABLE IF NOT EXISTS values (number INT)")
+  .query("CREATE TABLE IF NOT EXISTS numbers (number INT)")
     .catch(err => console.log("PG ERROR:", err));
 });
 
@@ -32,7 +34,7 @@ app.get("/", (req, res) => {
 
 //get the values
 app.get("/values/all", async (req, res) => {
-  const values = await pgClient.query("SELECT * from values");
+  const values = await pgClient.query("SELECT * from numbers");
   res.send(values);
 });
 
@@ -40,7 +42,7 @@ app.get("/values/all", async (req, res) => {
 app.post("/values", async (req, res) => {
     if (!Reg.body.value) res.send({ working: false });
 
-  pgClient.query("INSERT INTO values(number) VALUES($1)", [req.body.value]);
+  pgClient.query("INSERT INTO numbers(number) VALUES($1)", [req.body.value]);
   res.send({ working: true });
 });
 
