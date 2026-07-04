@@ -12,11 +12,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "4.16.3",
-    "pg": "8.0.3",
-    "cors": "2.8.4",
     "body-parser": "*",
-    "dotenv": "^16.4.5"
+    "cors": "2.8.4",
+    "dotenv": "^16.6.1",
+    "express": "4.16.3",
+    "pg": "8.0.3"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
