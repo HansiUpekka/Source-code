@@ -1,4 +1,15 @@
-function SignupField({ label, type = 'text', placeholder, helperText, icon, autoComplete }) {
+function SignupField({
+  label,
+  type = 'text',
+  name,
+  value,
+  onChange,
+  placeholder,
+  helperText,
+  icon,
+  autoComplete,
+  required = false,
+}) {
   return (
     <label className="field">
       <span className="field-label">{label}</span>
@@ -9,8 +20,12 @@ function SignupField({ label, type = 'text', placeholder, helperText, icon, auto
         <input
           className="field-input"
           type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
           placeholder={placeholder}
           autoComplete={autoComplete}
+          required={required}
         />
       </span>
       {helperText ? <span className="field-helper">{helperText}</span> : null}

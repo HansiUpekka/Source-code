@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
+const authRoutes = require("./routes/authRoutes");
 const valuesRoutes = require("./routes/valuesRoutes");
 
 const app = express();
@@ -14,5 +15,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/values", valuesRoutes);
+app.use("/auth", authRoutes);
 
 module.exports = app;
