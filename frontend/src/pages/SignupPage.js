@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import axios from 'axios';
 import '../App.css';
+import logo from '../logo.png';
 import SignupField from '../components/SignupField';
 
 /* ─── Password strength helper ─────────────────────────────── */
@@ -168,10 +169,9 @@ function SignupPage() {
       {/* ── Top Bar ────────────────────────────────────────── */}
       <header className="topbar" aria-label="IntelliHire navigation">
         <a href="/" className="topbar-brand">
-          <div className="brand-icon" aria-hidden="true">🧠</div>
-          <span className="brand-name">
-            Intelli<span>Hire</span>
-          </span>
+          <div className="brand-logo-wrap">
+            <img src={logo} alt="IntelliHire" className="brand-logo" />
+          </div>
         </a>
         <span className="topbar-badge">Smart Recruitment Platform</span>
       </header>
@@ -182,10 +182,12 @@ function SignupPage() {
 
           {/* Card Header */}
           <div className="card-header">
-            <div className="card-header-icon" aria-hidden="true">🚀</div>
+            <div className="card-header-logo-wrap">
+              <img src={logo} alt="IntelliHire" className="card-header-logo" />
+            </div>
             <h1 id="signup-title">Create Your Account</h1>
             <p className="card-subtitle">
-              Join thousands of recruiters & candidates on IntelliHire
+              Join thousands of recruiters &amp; candidates on IntelliHire
             </p>
           </div>
 
